@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap');
+
+:root {
+  /* Clinical Ledger Color Tokens */
+  --color-ink: #14323B;
+  --color-muted: #4F6670;
+  --color-placeholder: #597079;
+  --color-canvas: #F3F6F7;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #EBF0F2;
+  --color-line: #D5DEE1;
+  --color-control-border: #748A92;
+
+  --color-primary: #0B7285;
+  --color-primary-strong: #095C6B;
+  --color-primary-soft: #E3F2F5;
+
+  --color-success-ink: #1E6B45;
+  --color-success-bg: #E4F4EA;
+  --color-success-border: #2D8659;
+
+  --color-warning-ink: #7A4E00;
+  --color-warning-bg: #FFF1D6;
+  --color-warning-border: #996300;
+
+  --color-danger-ink: #B3261E;
+  --color-danger-bg: #FDE8E6;
+  --color-danger-border: #C9382F;
+
+  --color-overlay: rgba(20, 50, 59, 0.48);
+
+  /* Typography */
+  --font-sans: 'IBM Plex Sans Arabic', 'Tajawal', system-ui, -apple-system, sans-serif;
+  --font-numeric: 'Tajawal', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+
+  /* Radii */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-dialog: 20px;
+
+  /* Layered Shadow-as-Border */
+  --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 0 0 1px rgba(20, 50, 59, 0.08), 0 8px 24px -4px rgba(20, 50, 59, 0.14);
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --ease-clinical: cubic-bezier(0.2, 0, 0, 1);
+}
+
+html,
+body,
+#root {
+  font-family: var(--font-sans) !important;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0 !important;
+}
+
+/* Enforce Arabic typographic rules: zero letter-spacing, no italic, no uppercase */
+[dir='rtl'] * {
+  letter-spacing: 0;
+  font-style: normal;
+}
+
+.clinical-heading-1 {
+  font-size: 1.75rem; /* 28px */
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.clinical-heading-2 {
+  font-size: 1.375rem; /* 22px */
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.clinical-heading-3 {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.clinical-prose {
+  text-wrap: pretty;
+}
+
+.num-tabular {
+  font-family: var(--font-numeric) !important;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.clinical-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.clinical-dialog {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-dialog);
+  box-shadow: var(--shadow-elevated);
+}
+
+.clinical-control-radius {
+  border-radius: var(--radius-control);
+}
+
+.clinical-focus:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.clinical-press {
+  transition-property: transform, background-color, border-color, color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-clinical);
+}
+
+.clinical-press:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* Expanded 44px touch target without layout shift */
+.hit-target-44 {
+  position: relative;
+}
+
+.hit-target-44::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Scrollbar clean helper */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print protection */
+@media print {
+  body,
+  #root {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .clinical-press:active:not(:disabled) {
+    transform: none !important;
+  }
+}
