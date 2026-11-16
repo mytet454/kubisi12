@@ -1,0 +1,6 @@
+{
+  "name": "سوق المستلزمات الطبية - العراق",
+  "description": "منصة سوق المستلزمات الطبية ونظام المحاسبة وإدارة المستودعات للمكاتب والمستشفيات في العراق",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
